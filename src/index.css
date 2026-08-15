@@ -1,0 +1,93 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #1E3A8A; /* Deep Blue */
+  --color-secondary: #10B981; /* Emerald Green */
+  --color-accent: #F59E0B; /* Soft Gold */
+  --color-ai: #7C3AED; /* Assistant Purple */
+  --color-bg-page: #F9FAFB; /* Off-white */
+  
+  --font-outfit: "Outfit", sans-serif;
+  
+  --shadow-premium: 0 8px 30px rgba(0,0,0,0.02);
+  --shadow-premium-hover: 0 20px 40px rgba(30,58,138,0.06);
+}
+
+:root {
+  font-family: 'Outfit', 'Inter', system-ui, sans-serif;
+  color-scheme: light;
+}
+
+body {
+  margin: 0;
+  background-color: #F9FAFB;
+  color: #111827; /* Gray 900 */
+  -webkit-font-smoothing: antialiased;
+}
+
+@layer base {
+  body {
+    @apply bg-[#F9FAFB] text-slate-900;
+  }
+  
+  h1 { @apply text-4xl font-black tracking-tighter uppercase leading-none; }
+  h2 { @apply text-2xl font-black tracking-tight text-slate-900; }
+  h3 { @apply text-xl font-black tracking-tight text-slate-900; }
+}
+
+@layer components {
+  .section-card {
+    @apply bg-white border border-slate-100 rounded-[2.5rem] shadow-[--shadow-premium] transition-all duration-300;
+  }
+
+  .section-card-hover {
+    @apply hover:shadow-[--shadow-premium-hover] hover:-translate-y-1;
+  }
+
+  .btn-primary {
+    @apply bg-[#1E3A8A] text-white font-black uppercase tracking-widest px-10 py-5 rounded-2xl transition-all hover:bg-[#1E40AF] active:scale-95 flex items-center justify-center gap-3 shadow-xl shadow-blue-900/10 text-xs;
+  }
+
+  .btn-secondary {
+    @apply bg-[#10B981] text-white font-black uppercase tracking-widest px-10 py-5 rounded-2xl transition-all hover:bg-[#059669] active:scale-95 flex items-center justify-center gap-3 shadow-xl shadow-emerald-900/10 text-xs;
+  }
+
+  .btn-outline {
+    @apply bg-white border border-slate-200 text-slate-600 font-black uppercase tracking-widest px-8 py-5 rounded-2xl transition-all hover:bg-slate-50 active:scale-95 flex items-center justify-center gap-3 shadow-sm text-xs;
+  }
+
+  .input-field {
+    @apply bg-white text-slate-900 border border-slate-200 rounded-3xl px-8 py-5 focus:border-[#1E3A8A] focus:ring-4 focus:ring-[#1E3A8A]/5 transition-all outline-none w-full placeholder:text-slate-400 text-base shadow-sm;
+  }
+
+  /* ── Onboarding wizard inputs ─────────────────────────────────────────────
+     Slightly more compact than input-field; used across all onboarding steps.
+     Must match any pl-* overrides set by individual components (pl-10, pl-12).  */
+  .onboarding-input {
+    @apply w-full bg-white text-slate-900 border border-slate-200 rounded-2xl px-5 py-3.5 text-sm
+           focus:border-[#1E3A8A] focus:ring-4 focus:ring-[#1E3A8A]/5
+           outline-none transition-all placeholder:text-slate-400 shadow-sm
+           disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  /* Scroll container for the onboarding main content area */
+  .onboarding-container {
+    @apply scroll-smooth;
+  }
+}
+
+@keyframes loading-bar {
+  0% {
+    transform: translateX(-100%);
+  }
+  50% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(200%);
+  }
+}
+
+.animate-loading-bar {
+  animation: loading-bar 1.6s infinite cubic-bezier(0.4, 0, 0.2, 1);
+}
